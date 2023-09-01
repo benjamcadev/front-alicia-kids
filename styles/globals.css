@@ -1,10 +1,17 @@
-:root {
-    --primary: #e99401;
-    --black: #262626;
-    --white: #FFF;
-    --fuente-principal: 'Outfit', sans-serif;
-  }
-  html {
-    font-size: 62.5%;
-    box-sizing: border-box;
-  }
+.contenedorHeader {
+  display: flex;
+  flex-direction: row;
+  
+}
+@media (min-width: 768px) {
+    .contenedorHeader {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 760px){
+   .contenedorHeader {
+    flex-direction: column;
+    align-content: stretch;
+   }
+}

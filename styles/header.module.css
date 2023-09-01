@@ -1,3 +1,52 @@
-.header{
-    background-color: green;
+.header {
+    background-color: black;
+    padding: 70px;
 }
+
+.navegacion {
+    background-color: purple;
+    display: flex;
+    gap: 2rem;
+}
+
+.logoHeader {
+    margin-top: 6px;
+    position: relative;
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+    order: 0;
+   
+}
+
+.navHeader {
+    margin-top: 10px;
+    margin-left: 10px;
+    align-self: flex-end;
+    padding-bottom: 10px;
+    padding-left: 70px;
+    
+}
+
+
+ /* Pantalla moviles */
+@media (max-width: 760px){
+    .navHeader {
+        align-self: stretch;
+        padding-left: 0px;
+        margin-left: 0px;
+        justify-content: space-between;
+    }
+    .logoHeader {
+        align-self: center;
+    }
+    .header {
+        padding: 10px;
+    }
+ }
+
+ .enlace {
+    color: aqua;
+ }
