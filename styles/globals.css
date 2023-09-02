@@ -1,17 +1,38 @@
-.contenedorHeader {
-  display: flex;
-  flex-direction: row;
-  
-}
-@media (min-width: 768px) {
-    .contenedorHeader {
-        justify-content: flex-start;
-    }
+:root {
+    --primary: #d3d01f;
+    --black: #262626;
+    --white: #FFF;
+    --fuente-principal: 'Outfit', sans-serif;
 }
 
-@media (max-width: 760px){
-   .contenedorHeader {
-    flex-direction: column;
-    align-content: stretch;
-   }
+html {
+    font-size: 85.5%;
+}
+
+
+body {
+    font-size: 1rem;
+    font-family: var(--fuente-principal);
+    line-height: 1.5;
+}
+
+.contenedorHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+}
+
+
+/* Pantalla moviles */
+@media (max-width: 760px) {
+    html {
+        font-size: 75.5%;
+    }
+
+    .contenedorHeader {
+        flex-direction: column;
+        align-content: stretch;
+    }
+
 }

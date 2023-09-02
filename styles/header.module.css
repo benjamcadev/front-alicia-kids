@@ -1,24 +1,21 @@
 .header {
-    background-color: black;
-    padding: 70px;
+    background-color: rgb(255, 221, 67);
+    padding: 40px;
+    display: flex;
+    
+
 }
 
 .navegacion {
-    background-color: purple;
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
+    
 }
 
 .logoHeader {
     margin-top: 6px;
     position: relative;
     display: block;
-    flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: auto;
-    align-self: auto;
-    order: 0;
-   
 }
 
 .navHeader {
@@ -30,9 +27,34 @@
     
 }
 
+.enlace {
+    color: rgb(21, 22, 22);
+    text-decoration: none;
+    font-size: 1.6rem;
+    transition-duration: 600ms;
+ }
+ .enlace:hover , .active{
+    background-color: #8b2828;
+    color: aliceblue;
+    padding: 0.2rem;
+    border-radius: 10px;
+ }
+
+
+ .rrss {
+    display: flex;
+    font-size: 1.8rem;
+    gap: 1rem;
+    color: rgb(21, 22, 22);
+ }
+
 
  /* Pantalla moviles */
+
 @media (max-width: 760px){
+    .navegacion {
+        gap: 1rem;
+    }
     .navHeader {
         align-self: stretch;
         padding-left: 0px;
@@ -45,8 +67,15 @@
     .header {
         padding: 10px;
     }
+    .rrss {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: 2rem;
+        gap: 0.5rem;
+        margin-left: 5px;
+        color: rgb(21, 22, 22);
+     }
  }
 
- .enlace {
-    color: aqua;
- }
+ 
