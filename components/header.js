@@ -21,21 +21,23 @@ export default function Header() {
             </div>
 
             <div className={styles.navHeader}>
+               
                <nav className={styles.navegacion}>
                   <Link className={ router.pathname === '/' ? styles.enlace +' '+ styles.active : styles.enlace} href="/">
                      Inicio
                   </Link>
 
-                  <Link className={router.pathname === '/contacto' ? styles.enlace +' '+ styles.active : styles.enlace} href="/contacto">
-                     Contacto
+                  <Link className={router.pathname === '/reserva' ? styles.enlace +' '+ styles.active : styles.enlace} href="/reserva">
+                     Reserva tu hora
                   </Link>
 
                   <Link className={router.pathname === '/juegos' ? styles.enlace +' '+ styles.active : styles.enlace} href="/juegos">
                      Juegos 
                   </Link>
 
-                  <Link className={router.pathname === '/reserva' ? styles.enlace +' '+ styles.active : styles.enlace} href="/reserva">
-                     Reserva tu hora
+
+                  <Link className={router.pathname === '/contacto' ? styles.enlace +' '+ styles.active : styles.enlace} href="/contacto">
+                     Contacto
                   </Link>
 
                   <div className={styles.enlace +' '+ styles.rrss}>

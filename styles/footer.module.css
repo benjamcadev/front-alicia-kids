@@ -1,0 +1,9 @@
+.footer {
+    background-color: rgb(255, 221, 67);
+}
+
+.navegacion {
+    display: flex;
+    gap: 2.5rem;
+    
+}
