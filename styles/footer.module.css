@@ -4,6 +4,26 @@
 
 .navegacion {
     display: flex;
-    gap: 2.5rem;
-    
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.enlace, .copyright {
+    color: rgb(21, 22, 22);
+    text-decoration: none;
+    font-size: 1.2rem;
+    text-align: center;
+ }
+
+
+@media (min-width:768px) {
+    .contenido {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .navegacion {
+        flex-direction: row;
+    }
 }

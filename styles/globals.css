@@ -2,13 +2,43 @@
     --primary: #d3d01f;
     --black: #262626;
     --white: #FFF;
+    --nacre: #942a2a;
+    --nacreHover: #c23535;
     --fuente-principal: 'Outfit', sans-serif;
 }
 
 html {
     font-size: 85.5%;
 }
+[class*="contenedorHeader"], 
+main {
+    width: min(95%, 120rem);
+    margin: 2rem auto;
+}
 
+
+.contenedorBody {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(../public/img/fondo.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+[class*="contenedor"], 
+  main {
+    width: min(95%, 120rem);
+    margin: 2rem auto;
+   
+  }
+
+  [class*="heading"] {
+    font-size: 4rem;
+    text-align: center;
+    font-weight: 900;
+    color: var(--nacre);
+    margin: 5rem 0;
+  }
+
+  
 
 body {
     font-size: 1rem;
@@ -16,11 +46,67 @@ body {
     line-height: 1.5;
 }
 
+
+input, textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid var(--nacre);
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
 .contenedorHeader {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
 
+}
+
+.buttonForm {
+  align-items: center;
+  background-clip: padding-box;
+  background-color: var(--nacre);
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.buttonForm:hover,
+.buttonForm:focus {
+  background-color: var(--nacreHover);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.buttonForm:hover {
+  transform: translateY(-1px);
+}
+
+.buttonForm:active {
+  background-color: #c85000;
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
 }
 
 

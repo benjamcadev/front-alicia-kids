@@ -11,14 +11,12 @@ export default function Layout({children, title = '', description = ''}) {
     </Head>
 
     <Header>
-
     </Header>
 
-    <Footer>
-
-      
-    </Footer>
     {children}
+
+    <Footer>      
+    </Footer>
     </>
   )
 }

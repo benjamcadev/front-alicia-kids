@@ -28,7 +28,7 @@ export default function Header() {
                   </Link>
 
                   <Link className={router.pathname === '/reserva' ? styles.enlace +' '+ styles.active : styles.enlace} href="/reserva">
-                     Reserva tu hora
+                     Reserva hora
                   </Link>
 
                   <Link className={router.pathname === '/juegos' ? styles.enlace +' '+ styles.active : styles.enlace} href="/juegos">
