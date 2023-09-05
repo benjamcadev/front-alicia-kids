@@ -6,6 +6,20 @@
     padding-right: 10%;
 }
 
+.alertRed {
+    display: flex;
+    padding: 5px;
+    background-color: #f44336;
+    color: white;
+    font-size: 1.2rem;
+    column-gap: 10px;
+
+    border-radius: 6px;
+  }
+
+  .iconRed {
+    font-size: 2rem;
+  }
 
 
 /* Pantallas grandes */

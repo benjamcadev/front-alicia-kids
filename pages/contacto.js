@@ -1,15 +1,32 @@
 import Layout from "../components/layout";
 import styles from '../styles/contacto.module.css'
-import { Form, Formik , Field, ErrorMessage} from 'formik'
+import { FiAlertTriangle } from 'react-icons/fi'
+import ReCAPTCHA from 'react-google-recaptcha'
+import { useRef, useState } from 'react'
+import { Form, Formik, Field, ErrorMessage } from 'formik'
 
 export default function Contacto() {
+
+  const [stateRecaptcha, setStateRecaptcha] = useState(false)
+  const captcha = useRef(null)
+
+  const onChange = () => {
+    if (captcha.current.getValue()) {
+      console.log('No es un robot');
+      setStateRecaptcha(true)
+    }
+  }
 
   const validate = (values) => {
     const errors = {}
 
-    if (!values.name) { errors.name = 'Requerido' }
-    if (!values.lastname) { errors.lastname = 'Requerido' }
-    if (!values.email) { errors.email = 'Requerido' }
+    console.log(values);
+    values.recaptcha = stateRecaptcha
+    
+    if (!values.name) { errors.name = 'Nombre Requerido' }
+    if (!values.lastname) { errors.lastname = 'Apellido Requerido' }
+    if (!values.email) { errors.email = 'Correo Requerido' }
+    if (!values.recaptcha) { errors.recaptcha = 'Captcha Requerido' }
     return errors
   }
 
@@ -34,7 +51,8 @@ export default function Contacto() {
                 name: '',
                 lastname: '',
                 email: '',
-                consulta: ''
+                consulta: '',
+                recaptcha: stateRecaptcha
               }
             }
             validate={validate}
@@ -43,18 +61,38 @@ export default function Contacto() {
             {formik =>
               <Form>
 
-                <Field name="name" placeholder="Nombre" type="text"  />
-                <ErrorMessage name="name" />
+                <Field name="name" placeholder="Nombre" type="text" />
+                <ErrorMessage name="name" render={msg => <div className={styles.alertRed}>
+                  <FiAlertTriangle className={styles.iconRed} />{msg}</div>
+                }
+                />
 
-                <Field name="lastname" placeholder="Apellido" type="text"  />
-                <ErrorMessage name="lastname" />
+
+
+                <Field name="lastname" placeholder="Apellido" type="text" />
+                <ErrorMessage name="lastname" render={msg => <div className={styles.alertRed}>
+                  <FiAlertTriangle className={styles.iconRed} />{msg}</div>
+                }
+                />
 
                 <Field name="email" placeholder="Correo" type="email" />
-                <ErrorMessage name="email" />
+                <ErrorMessage name="email" render={msg => <div className={styles.alertRed}>
+                  <FiAlertTriangle className={styles.iconRed} />{msg}</div>
+                }
+                />
 
-                <Field as="textarea" name="consulta" placeholder="Escribe aca tu consulta" type="textarea"  />
+                <Field as="textarea" name="consulta" placeholder="Escribe aca tu consulta" type="textarea" />
 
+                <ReCAPTCHA
+                  ref={captcha}
+                  sitekey="6LeoVgAoAAAAAJ-fi37ZVSpW3LTlgX6d-6SgOBF0"
+                  onChange={onChange}
+                />
 
+                <ErrorMessage name="recaptcha" render={msg => <div className={styles.alertRed}>
+                  <FiAlertTriangle className={styles.iconRed} />{msg}</div>
+                }
+                />
                 <button type="submit" className="buttonForm">Enviar</button>
               </Form>
             }
