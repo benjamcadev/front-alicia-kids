@@ -4,6 +4,7 @@
     font-size: 1.6rem;
     padding-left: 10%;
     padding-right: 10%;
+   
 }
 
 .alertRed {
@@ -21,11 +22,15 @@
     font-size: 2rem;
   }
 
+  .imagenContacto {
+    border-radius: 8px;;
+  }
+
 
 /* Pantallas grandes */
 @media (min-width: 768px) {
     .contenido {
         grid-template-columns: repeat(2, 1fr);
-        align-items: center;
+        align-items: start;
     }
 }

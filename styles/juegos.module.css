@@ -1,0 +1,13 @@
+.contenido {
+    display: grid;
+    gap: 4rem;
+    font-size: 1.6rem;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.listado {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
+}
