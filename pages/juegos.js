@@ -15,7 +15,7 @@ export default function Juegos({ juegos }) {
 
                 <div className={styles.contenido}>
                     <ListadoJuegos>
-
+                        {juegos}
                     </ListadoJuegos>
                 </div>
             </main>
@@ -25,8 +25,10 @@ export default function Juegos({ juegos }) {
 }
 
 export async function getServerSideProps() {
-    const respuesta = await fetch('')
+    const respuesta = await fetch('http://localhost:3900/juego')
     const { juegos } = await respuesta.json()
+
+    console.log(juegos);
     return {
         props: {
             juegos

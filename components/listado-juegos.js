@@ -1,15 +1,19 @@
 
 import styles from '../styles/juegos.module.css'
+import JuegoCard from '../components/juego-card'
 
-export default function ListadoJuegos() {
+export default function ListadoJuegos({ children: juegos }) {
+
+
   return (
-   <div className={styles.listado}>
-    <div>Juego 1</div>
-    <div>Juego 2</div>
-    <div>Juego 3</div>
-    <div>Juego 4</div>
-    <div>Juego 5</div>
-    <div>Juego 6</div>
-   </div>
+    <div className={styles.listado}>
+
+      { juegos.map((juego) => {
+          return (
+            <JuegoCard>{juego}</JuegoCard>
+          )
+        })
+      }
+    </div>
   )
 }

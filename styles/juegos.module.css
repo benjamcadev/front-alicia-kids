@@ -1,6 +1,6 @@
 .contenido {
     display: grid;
-    gap: 4rem;
+    gap: 2rem;
     font-size: 1.6rem;
     padding-left: 10%;
     padding-right: 10%;
@@ -10,4 +10,12 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: stretch;
+}
+
+
+  /* Pantalla moviles */
+  @media (max-width: 760px) {
+    .listado {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
