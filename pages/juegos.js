@@ -28,7 +28,7 @@ export async function getServerSideProps() {
     const respuesta = await fetch('http://localhost:3900/juego')
     const { juegos } = await respuesta.json()
 
-    console.log(juegos);
+    
     return {
         props: {
             juegos

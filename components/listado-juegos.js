@@ -2,6 +2,8 @@
 import styles from '../styles/juegos.module.css'
 import JuegoCard from '../components/juego-card'
 
+
+
 export default function ListadoJuegos({ children: juegos }) {
 
 
@@ -10,7 +12,7 @@ export default function ListadoJuegos({ children: juegos }) {
 
       { juegos.map((juego) => {
           return (
-            <JuegoCard>{juego}</JuegoCard>
+              <JuegoCard key={juego.id_juego}>{juego}</JuegoCard> 
           )
         })
       }
