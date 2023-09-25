@@ -21,41 +21,66 @@ export default function Home() {
 
         <main className="contenedorBody">
 
-          <div className={styles.slider}>
-            <Swiper
-              modules={[Pagination, Navigation, Autoplay]}
-              pagination={{
-                clickable: true,
-                dynamicBullets: true
-              }}
-              autoplay={{
-                delay: 22500,
-                disableOnInteraction: false
-              }}
-              centeredSlides={true}
-              navigation={true}
-              spaceBetween={30}
+          <section>
 
-            >
-              <SwiperSlide>
-                <div className={styles.imagenSlider}>
-                  <Image src="/img/slider1.jpg" width={600} height={400} />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className={styles.imagenSlider}>
-                  <Image src="/img/slider2.jpg" width={600} height={400} />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>Slide 3</SwiperSlide>
-              <SwiperSlide>Slide 4</SwiperSlide>
-              <SwiperSlide>Slide 5</SwiperSlide>
-              <SwiperSlide>Slide 6</SwiperSlide>
-              <SwiperSlide>Slide 7</SwiperSlide>
-              <SwiperSlide>Slide 8</SwiperSlide>
-              <SwiperSlide>Slide 9</SwiperSlide>
-            </Swiper>
-          </div>
+            <div className={styles.slider}>
+              <Swiper
+                modules={[Pagination, Navigation, Autoplay]}
+                pagination={{
+                  clickable: true,
+                  dynamicBullets: true
+                }}
+                autoplay={{
+                  delay: 22500,
+                  disableOnInteraction: false
+                }}
+                centeredSlides={true}
+                navigation={true}
+                spaceBetween={10}
+
+              >
+                <SwiperSlide>
+                  <div className={styles.imagenSlider}>
+                    <Image src="/img/slider1.jpg" width={984} height={400} />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className={styles.imagenSlider}>
+                    <Image src="/img/slider1.jpg" width={984} height={400} />
+                  </div>
+                </SwiperSlide>
+
+              </Swiper>
+            </div>
+
+          </section>
+
+          <section>
+
+            <div className={styles.containerWave}>
+              <svg viewBox="0 0 500 150" preserveAspectRatio="xMinYMin meet">
+                <path d="M0,100 C150,200 350,0 500,100 L500,00 L0,0 Z" className={styles.wave}></path>
+              </svg>
+            </div>
+
+            <div className={styles.contenido }>
+
+
+
+
+              <div>
+              <Image src="/img/imagen_contacto.jpg" width={450} height={250} layout="responsive" className={styles.imagenContacto} alt="Imagen contacto" />
+              </div>
+
+              <div >
+                <h1> <b>CELEBRA CON NOSOTROS !</b></h1>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              </div>
+            </div>
+
+          </section>
+
+
         </main>
 
       </Layout>

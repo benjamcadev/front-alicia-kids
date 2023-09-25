@@ -17,10 +17,13 @@ main {
 }
 
 
+
 .contenedorBody {
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(../public/img/fondo.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    margin-top: 0px;
+    margin-bottom: 20px;
    
 }
 
