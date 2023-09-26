@@ -43,6 +43,14 @@ main {
     margin: 5rem 0;
   }
 
+  [class*="title"] {
+    font-size: 3rem;
+    text-align: center;
+    font-weight: 900;
+    color: var(--nacre);
+    margin: 5rem 0;
+  }
+
   
 
 body {
@@ -74,14 +82,14 @@ input, textarea {
   background-clip: padding-box;
   background-color: var(--nacre);
   border: 1px solid transparent;
-  border-radius: .25rem;
+  border-radius: 2rem;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
   display: inline-flex;
   font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   justify-content: center;
   line-height: 1.25;

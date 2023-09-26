@@ -1,0 +1,44 @@
+.containerWave {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    vertical-align: middle;
+    overflow: hidden;
+    padding-bottom: 0px;
+    
+}
+
+.wave {
+    stroke: none;
+    fill: rgb(255, 221, 67);
+    height: 100px;
+    width: 100px;
+}
+
+.imagenContacto {
+    border-radius: 8px;
+    
+  }
+
+.contenido {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        font-size: 1.6rem;
+        margin-top: 10%;
+        gap: 2rem;
+        background-color: rgb(255, 221, 67);
+        border-radius: 8px 8px 0px 0px;
+        padding: 5%;
+    }
+
+ .button {
+    margin: 1%;
+ }   
+
+    /* Pantalla moviles */
+@media (max-width: 760px) {
+    .contenido {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

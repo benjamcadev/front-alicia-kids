@@ -27,27 +27,8 @@
     
 }
 
-.containerWave {
-    display: inline-block;
-    position: relative;
-    width: 100%;
-    vertical-align: middle;
-    overflow: hidden;
-    padding-bottom: 0px;
-    border-radius: 8px;
-  }
+  
 
-  .wave {
-    stroke: none; 
-    fill:rgb(255, 221, 67);
-    height: 100px;
-    width: 100px;
-  }
-
-  .imagenContacto {
-    border-radius: 8px;
-    
-  }
 
 /* Pantallas grandes */
 @media (min-width: 768px) {
