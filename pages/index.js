@@ -1,18 +1,28 @@
-import Layout from '../components/layout'
-import Presentacion from '../components/presentacion'
 import Image from 'next/image'
-import styles from '../styles/index.module.css'
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
+
+
+import Layout from '../components/layout'
+import Presentacion from '../components/presentacion'
+import showInstagram from '../components/instagram';
+
+
+import styles from '../styles/index.module.css'
+
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import "swiper/css/navigation";
+import ShowInstagram from '../components/instagram';
 
 
-export default function Home() {
+
+export default function Home({feed}) {
+
+  console.log(feed);
   return (
     <>
       <Layout
@@ -57,6 +67,8 @@ export default function Home() {
 
           <Presentacion />
 
+          <ShowInstagram />
+
 
         </main>
 
@@ -65,4 +77,16 @@ export default function Home() {
     </>
 
   )
+}
+
+export const getStaticProps = async () => {
+  const url = `https://graph.instagram.com/me/media?fields=id,caption,media_url,timestamp,media_type,permalink,username&access_token=${process.env.INSTAGRAM_TOKEN}`
+  const data = await fetch(url)
+  const feed = await data.json()
+
+  return {
+    props: {
+      feed
+    }
+  }
 }

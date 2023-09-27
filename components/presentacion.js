@@ -15,7 +15,7 @@ export default function Presentacion() {
 
                 <div >
                     <h2 className='title'> <b>CELEBRA CON NOSOTROS !</b></h2>
-                    <p>Celebra tu cumpleaños con Alicia Kids, Por 3 horas tendras diversion garantizada con nuestros juegos inflables, maquina de burbujas y mas... Recuerda que estamos en La Serena y Coquimbo.</p>
+                    <p>Celebra tu cumpleaños con Alicia Kids, Por horas tendras diversion garantizada con nuestros juegos inflables, maquina de burbujas y mas... Recuerda que estamos en La Serena y Coquimbo.</p>
                     <Link href={'/reserva'}>
                         <button type="button" className={"buttonForm " + styles.button}>RESERVA TU HORA !</button>
                     </Link>
