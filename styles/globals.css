@@ -41,6 +41,7 @@ main {
     font-weight: 900;
     color: var(--nacre);
     margin: 5rem 0;
+    
   }
 
   [class*="title"] {
@@ -49,6 +50,7 @@ main {
     font-weight: 900;
     color: var(--nacre);
     margin: 3rem 0;
+  
   }
 
   

@@ -6,7 +6,8 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 import Layout from '../components/layout'
 import Presentacion from '../components/presentacion'
-import showInstagram from '../components/instagram';
+import FeedInstagram from '../components/instagram';
+import Clientes from '../components/clientes';
 
 
 import styles from '../styles/index.module.css'
@@ -20,9 +21,10 @@ import ShowInstagram from '../components/instagram';
 
 
 
+
 export default function Home({feed}) {
 
-  console.log(feed);
+
   return (
     <>
       <Layout
@@ -67,7 +69,11 @@ export default function Home({feed}) {
 
           <Presentacion />
 
-          <ShowInstagram />
+          <Clientes />
+
+          <FeedInstagram feedinstagram={feed} />
+
+         
 
 
         </main>

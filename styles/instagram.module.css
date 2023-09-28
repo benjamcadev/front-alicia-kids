@@ -1,10 +1,36 @@
-
 .contenido {
     display: grid;
-    grid-template-columns: repeat(1 1fr);
-    align-items: center;
-    font-size: 1.6rem;
-    margin-top: 10%;
-    gap: 2rem;
-    padding: 3%;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
+}
+
+.containerImage {
+    padding: 2% 2% 2% 2%;
+
+}
+
+.image {
+    border-radius: 8px;
+    aspect-ratio: 1 / 1.1;
+}
+.image:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+    filter: contrast(120%);
+    transition-duration: 500ms;
+
+}
+
+/* Pantalla moviles */
+@media (max-width: 760px) {
+    .contenido {
+        grid-template-columns: repeat(1, 1fr);
+        justify-content: center;
+    }
+
+    .containerImage {
+        display: flex;
+        flex-direction: column;
+        padding: 0% 8% 8% 8%;
+    }
+
 }
