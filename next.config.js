@@ -3,6 +3,14 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'scontent-scl2-1.cdninstagram.com',
+        port: '',
+       
+      },
+    ],
     domains: ['scontent-scl2-1.cdninstagram.com'],
   }
 }
