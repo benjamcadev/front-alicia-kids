@@ -1,28 +1,10 @@
-import Image from 'next/image'
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-
-
-
 import Layout from '../components/layout'
 import Presentacion from '../components/presentacion'
-import FeedInstagram from '../components/instagram';
-import Clientes from '../components/clientes';
+import FeedInstagram from '../components/instagram'
+import Clientes from '../components/clientes'
+import Slider from '../components/slider'
 
-
-import styles from '../styles/index.module.css'
-
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import "swiper/css/navigation";
-import ShowInstagram from '../components/instagram';
-
-
-
-
-export default function Home({feed}) {
+export default function Home({ feed }) {
 
 
   return (
@@ -33,48 +15,10 @@ export default function Home({feed}) {
 
         <main className="contenedorBody">
 
-          <section>
-
-            <div className={styles.slider}>
-              <Swiper
-                modules={[Pagination, Navigation, Autoplay]}
-                pagination={{
-                  clickable: true,
-                  dynamicBullets: true
-                }}
-                autoplay={{
-                  delay: 22500,
-                  disableOnInteraction: false
-                }}
-                centeredSlides={true}
-                navigation={true}
-                spaceBetween={10}
-
-              >
-                <SwiperSlide>
-                  <div className={styles.imagenSlider}>
-                    <Image src="/img/slider1.jpg" width={984} height={400} />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className={styles.imagenSlider}>
-                    <Image src="/img/slider1.jpg" width={984} height={400} />
-                  </div>
-                </SwiperSlide>
-
-              </Swiper>
-            </div>
-
-          </section>
-
+          <Slider />
           <Presentacion />
-
           <Clientes />
-
           <FeedInstagram feedinstagram={feed} />
-
-         
-
 
         </main>
 
