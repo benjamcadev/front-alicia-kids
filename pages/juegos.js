@@ -25,7 +25,7 @@ export default function Juegos({ juegos }) {
 }
 
 export async function getServerSideProps() {
-    const respuesta = await fetch('http://localhost:3900/juego')
+    const respuesta = await fetch('https://api-alicia-kids.onrender.com/juego')
     const { juegos } = await respuesta.json()
 
     
