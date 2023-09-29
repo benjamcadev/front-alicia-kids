@@ -6,8 +6,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'scontent-scl2-1.cdninstagram.com',
-        port: '',
+        hostname: '**.scontent-scl2-1.cdninstagram.com',
        
       },
     ],
