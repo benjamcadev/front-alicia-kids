@@ -40,13 +40,13 @@ export default function Header() {
                      Contacto
                   </Link>
 
-                  <div className={styles.enlace +' '+ styles.rrss}>
+                  <div className={styles.rrss}>
 
-                  <Link className={styles.rrss}  href="/ig">
+                  <Link className={styles.enlaceRrss + ' ' + styles.rrss} href={'https://instagram.com/aliciakids_inflables'} target='_blank'>
                    <GrInstagram />
                   </Link>
 
-                  <Link className={styles.rrss}  href="/wts">
+                  <Link className={styles.enlaceRrss + ' ' + styles.rrss}  href="https://api.whatsapp.com/send?phone=56987599487&text=Hola me comunico desde la web de alicia kids, Quiero realizar unas consultas !">
                    <ImWhatsapp />
                   </Link>
                   </div>
