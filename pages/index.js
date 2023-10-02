@@ -4,6 +4,7 @@ import FeedInstagram from '../components/instagram'
 import Clientes from '../components/clientes'
 import Slider from '../components/slider'
 
+
 export default function Home({ feed }) {
 
 

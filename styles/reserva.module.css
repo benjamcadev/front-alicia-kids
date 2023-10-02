@@ -1,0 +1,13 @@
+
+.inputBox {
+    width: 50%;
+}
+
+.contenido {
+    display: grid;
+    gap: 4rem;
+    font-size: 1.6rem;
+    padding-left: 10%;
+    padding-right: 10%;
+  
+  }
