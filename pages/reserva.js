@@ -7,23 +7,17 @@ import 'react-form-wizard-component/dist/style.css';
 // Alertas
 import swal from 'sweetalert'
 
-// date time picker
-import dayjs from 'dayjs'
-const customParseFormat = require('dayjs/plugin/customParseFormat')
-import { esES } from '@mui/x-date-pickers/locales';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
-
-
 import styles from '../styles/reserva.module.css'
 
-export default function Reserva() {
+//Componentes
+import ReservaFechas from '../components/reserva.fechas'
 
+export default function Reserva() {
+   
     const [user, setUser] = useState({ userEmail: "bmcortes@agroplastic.cl", userName: "Benjamin" })
     const [reserva, setReserva] = useState({ fechaInicio: '', fechaTermino: '' })
 
-
+   
 
     const handleComplete = () => {
         console.log("Form completed!");
@@ -34,6 +28,8 @@ export default function Reserva() {
         console.log("prevIndex", prevIndex);
         console.log("nextIndex", nextIndex);
         console.log(reserva);
+       
+        
     };
 
 
@@ -82,9 +78,7 @@ export default function Reserva() {
         )
     }
 
- 
 
-    dayjs.extend(customParseFormat)
 
     return (
         <Layout
@@ -128,30 +122,12 @@ export default function Reserva() {
                             isValid={checkValidateTab()}
                             validationError={errorMessages}
                         >
-                            <h3>Hola {user.userName}, Ahora selecciona una fecha</h3>
-                            <p>Recuerda que puedes reservar 5 horas como maximo los juegos, si quieres mas horas debes reservar el dia completo</p>
-                            <LocalizationProvider
-                                dateAdapter={AdapterDayjs}
-                                localeText={esES.components.MuiLocalizationProvider.defaultProps.localeText} >
-
-                                <p><small>¿Cuando empieza el cumpleaños ?</small></p>
-
-                                <MobileDateTimePicker
-                                    value={reserva.fechaInicio}
-                                    onChange={(newValue) => setReserva({...reserva, fechaInicio: dayjs(newValue).format('YYYY-MM-DD HH:mm:ss') })}
-                                    format="YYYY-MM-DD HH:mm:ss"
-                                    ampm={false}
-                                   
-                                />
-
-                                <p><small>¿Cuando termina el cumpleaños ?</small></p>
-
-                                <MobileDateTimePicker
-                                    value={reserva.fechaTermino}
-                                    onChange={(newValue) => setReserva({...reserva, fechaTermino: dayjs(newValue).format('YYYY-MM-DD HH:mm:ss') })}
-                                    format="YYYY-MM-DD HH:mm:ss"
-                                />
-                            </LocalizationProvider>
+                           <ReservaFechas 
+                           user={user}
+                           reserva={reserva}
+                           setReserva={setReserva}
+                           />
+                         
                         </FormWizard.TabContent>
                         <FormWizard.TabContent title="Direccion y Contacto">
                             <h3>Last Tab</h3>
