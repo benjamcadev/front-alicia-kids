@@ -9,7 +9,7 @@ import dayjs from 'dayjs'
 
 
 
-export default function ReservaFechas({user, reserva, setReserva}) {
+export default function ReservaFechas({user, reserva, setReserva, setJuegosActive}) {
     dayjs.extend(customParseFormat)
     return (
         <>
@@ -37,6 +37,7 @@ export default function ReservaFechas({user, reserva, setReserva}) {
                     format="YYYY-MM-DD HH:mm:ss"
                     ampm={false}
                 />
+
             </LocalizationProvider>
         </>
 

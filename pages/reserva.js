@@ -6,38 +6,66 @@ import FormWizard from "react-form-wizard-component";
 import 'react-form-wizard-component/dist/style.css';
 // Alertas
 import swal from 'sweetalert'
+// Fechas
+import dayjs from 'dayjs'
 
 import styles from '../styles/reserva.module.css'
 
 //Componentes
 import ReservaFechas from '../components/reserva.fechas'
+import ReservaJuegos from '../components/reserva.juegos'
+
+//Utils o helpers
+import getJuegosReserva from '../utils/getJuegosReserva'
 
 export default function Reserva() {
-   
+
     const [user, setUser] = useState({ userEmail: "bmcortes@agroplastic.cl", userName: "Benjamin" })
     const [reserva, setReserva] = useState({ fechaInicio: '', fechaTermino: '' })
+    const [juegosActive, setJuegosActive] = useState(false)
 
-   
+
 
     const handleComplete = () => {
         console.log("Form completed!");
         // Handle form completion logic here
     };
 
-    const tabChanged = ({ prevIndex, nextIndex }) => {
+    const tabChanged = async ({ prevIndex, nextIndex }) => {
         console.log("prevIndex", prevIndex);
         console.log("nextIndex", nextIndex);
         console.log(reserva);
-       
-        
+        console.log(juegosActive);
+
+
+
+        if (reserva.fechaInicio !== '' && reserva.fechaTermino !== '') {
+
+            //Validando diferencia de horas max 5 horas y minimo 3
+            const date1 = dayjs(reserva.fechaInicio);
+            const date2 = dayjs(reserva.fechaTermino);
+            let hours = date2.diff(date1, 'hours');
+
+            if (hours >= 3 && hours <= 5) {
+                // fetch data juegos
+                const juegos = await getJuegosReserva()
+                console.log(juegos);
+                setJuegosActive(true)
+
+            }else{
+                swal("Recuerda", "El minimo son 3 horas y el maximo 5 horas!");
+                setJuegosActive(false)
+            }
+
+          
+        }
+
+
     };
 
 
     // Validacion de la tab
     const checkValidateTab = () => {
-
-        console.log(user);
-
 
         if (user.userEmail === "" || user.userName === "") {
             return false;
@@ -122,12 +150,15 @@ export default function Reserva() {
                             isValid={checkValidateTab()}
                             validationError={errorMessages}
                         >
-                           <ReservaFechas 
-                           user={user}
-                           reserva={reserva}
-                           setReserva={setReserva}
-                           />
-                         
+                            <ReservaFechas
+                                user={user}
+                                reserva={reserva}
+                                setReserva={setReserva}
+                                setJuegosActive={setJuegosActive}
+                            />
+
+                            {juegosActive ? <ReservaJuegos /> : ''}
+
                         </FormWizard.TabContent>
                         <FormWizard.TabContent title="Direccion y Contacto">
                             <h3>Last Tab</h3>

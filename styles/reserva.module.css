@@ -41,6 +41,7 @@
     float: left;
   }
 
+
   /* Pantallas moviles */
   @media (max-width: 760px) {
     .contenidoButtons {

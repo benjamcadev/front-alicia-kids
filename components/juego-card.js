@@ -19,7 +19,7 @@ export default function juegoCard({ children: juego }) {
                 <h4 className={styles.titulo}>{juego.nombre_juego}</h4>
                 <p className={styles.subtitulo}>Inflable</p>
                 <p className={styles.descripcion}>{juego.descripcion_juego}</p>
-                <p className={styles.precio}><span>Precio x 3 Hr</span> <br />{formatter.format(juego.precio_juego)}</p>
+                <p className={styles.precio}><span>Precio x 3 - 5 Hrs</span> <br />{formatter.format(juego.precio_juego)}</p>
 
             </div>
 

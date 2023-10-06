@@ -12,6 +12,7 @@ const nextConfig = {
     ],
     domains: ['cdninstagram.com'],
   }
+  
 }
 
 module.exports = nextConfig
