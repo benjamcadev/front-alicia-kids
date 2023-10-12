@@ -15,14 +15,14 @@ import styles from '../styles/reserva.module.css'
 import ReservaFechas from '../components/reserva.fechas'
 import ReservaJuegos from '../components/reserva.juegos'
 
-//Utils o helpers
-import getJuegosReserva from '../utils/getJuegosReserva'
+
 
 export default function Reserva() {
 
     const [user, setUser] = useState({ userEmail: "bmcortes@agroplastic.cl", userName: "Benjamin" })
     const [reserva, setReserva] = useState({ fechaInicio: '', fechaTermino: '' })
     const [juegosActive, setJuegosActive] = useState(false)
+    const [juegos, setJuegos] = useState('')
 
 
 
@@ -34,31 +34,33 @@ export default function Reserva() {
     const tabChanged = async ({ prevIndex, nextIndex }) => {
         console.log("prevIndex", prevIndex);
         console.log("nextIndex", nextIndex);
-        console.log(reserva);
-        console.log(juegosActive);
+       
+        // if (reserva.fechaInicio !== '' && reserva.fechaTermino !== '') {
 
+        //     //Validando diferencia de horas max 5 horas y minimo 3
+        //     const date1 = dayjs(reserva.fechaInicio);
+        //     const date2 = dayjs(reserva.fechaTermino);
+        //     let hours = date2.diff(date1, 'hours');
 
+        //     if (hours >= 3 && hours <= 5) {
+        //         // fetch data juegos
+        //         const juegosResponse = await getJuegosReserva()
+            
+        //         if (juegosResponse.length > 0) {
+        //             //setJuegos(juegosResponse)
+        //             //setJuegosActive(true)
+        //         }else{
+        //             //setJuegosActive(false)
+        //         }
+                
 
-        if (reserva.fechaInicio !== '' && reserva.fechaTermino !== '') {
-
-            //Validando diferencia de horas max 5 horas y minimo 3
-            const date1 = dayjs(reserva.fechaInicio);
-            const date2 = dayjs(reserva.fechaTermino);
-            let hours = date2.diff(date1, 'hours');
-
-            if (hours >= 3 && hours <= 5) {
-                // fetch data juegos
-                const juegos = await getJuegosReserva()
-                console.log(juegos);
-                setJuegosActive(true)
-
-            }else{
-                swal("Recuerda", "El minimo son 3 horas y el maximo 5 horas!");
-                setJuegosActive(false)
-            }
+        //     }else{
+        //         swal("Recuerda", "El minimo son 3 horas y el maximo 5 horas!");
+        //         setJuegosActive(false)
+        //     }
 
           
-        }
+        // }
 
 
     };
@@ -155,9 +157,10 @@ export default function Reserva() {
                                 reserva={reserva}
                                 setReserva={setReserva}
                                 setJuegosActive={setJuegosActive}
+                                setJuegos={setJuegos}
                             />
 
-                            {juegosActive ? <ReservaJuegos /> : ''}
+                            {juegosActive ? <ReservaJuegos juegos={juegos} /> : ''}
 
                         </FormWizard.TabContent>
                         <FormWizard.TabContent title="Direccion y Contacto">
