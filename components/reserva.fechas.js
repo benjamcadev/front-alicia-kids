@@ -9,6 +9,10 @@ import swal from 'sweetalert'
 
 //Utils o helpers
 import getJuegosReserva from '../utils/getJuegosReserva'
+import getReservaDate from '../utils/getReservaDate';
+
+//styles
+import styles from '../styles/reserva.module.css'
 
 
 
@@ -27,13 +31,27 @@ export default function ReservaFechas({ user, reserva, setReserva, setJuegosActi
             const date2 = dayjs(dayjs(newValue).format('YYYY-MM-DD HH:mm:ss'));
             let hours = date2.diff(date1, 'hours');
 
-            console.log(hours)
-
             if (hours >= 3 && hours <= 5) {
-                
-                //fetch data juegos
+
+                // Fetch data de todos los juegos
                 setIsLoading(true)
                 const juegosResponse = await getJuegosReserva()
+
+                // Fetch de las reservas para ese dia escogido
+                const reservasResponse = await getReservaDate(reserva.fechaInicio)
+
+                // del juegosResponse debo eliminar por los id los juegos ya reservados
+                const juegosDisponibles = reservasResponse.map((reserva, index) => {
+
+                   return juegosResponse.map((juego, index) => {
+                        if (reserva.fk_juego == juego.id_juego) {
+                        juegosResponse.splice(index, 1)    
+                        
+                        }
+                
+                    })
+                    
+                })
 
                 if (juegosResponse.length > 0) {
                     setJuegos(juegosResponse)
@@ -53,7 +71,7 @@ export default function ReservaFechas({ user, reserva, setReserva, setJuegosActi
     return (
         <>
             <h3>Hola {user.userName}, Ahora selecciona una fecha</h3>
-            <p>Recuerda que puedes reservar 5 horas como maximo los juegos, si quieres mas horas debes reservar el dia completo</p>
+            <p className={styles.warning}>Recuerda que puedes reservar 5 horas como maximo los juegos, si quieres mas horas debes reservar el dia completo</p>
             <LocalizationProvider
                 dateAdapter={AdapterDayjs}
                 localeText={esES.components.MuiLocalizationProvider.defaultProps.localeText} >
