@@ -1,16 +1,19 @@
 
-import React, { useState } from 'react'
-import Image from 'next/image'
+import React, {  useRef, useEffect } from 'react'
 import ListadoJuegos from '../components/listado-juegos'
 import styles from '../styles/reserva.module.css'
 
 
 export default function ReservaJuegos({ juegos, setReserva, reserva }) {
 
+    const juegosReference = useRef(null);
 
+    useEffect(() => {
+        juegosReference.current?.scrollIntoView({ behavior: 'smooth' });
+    }, []);
 
     return (
-        <div >
+        <div  ref={juegosReference}>
             <h3>Ahora selecciona los juegos que quieres en tu cumpleaños</h3>
             <p className={styles.warning}>Nos quedan <b>{juegos.length}</b> juegos disponibles
                 <br />

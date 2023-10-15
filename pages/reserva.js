@@ -27,6 +27,8 @@ export default function Reserva() {
     const [juegos, setJuegos] = useState('')
     const [isLoading, setIsLoading] = useState(false)
 
+  
+
 
 
     const handleComplete = () => {
