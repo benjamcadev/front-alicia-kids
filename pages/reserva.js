@@ -14,6 +14,7 @@ import styles from '../styles/reserva.module.css'
 //Componentes
 import ReservaFechas from '../components/reserva.fechas'
 import ReservaJuegos from '../components/reserva.juegos'
+import LoadingScreen from '../components/loading-screen'
 
 
 
@@ -23,6 +24,7 @@ export default function Reserva() {
     const [reserva, setReserva] = useState({ fechaInicio: '', fechaTermino: '' })
     const [juegosActive, setJuegosActive] = useState(false)
     const [juegos, setJuegos] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
 
 
 
@@ -35,33 +37,6 @@ export default function Reserva() {
         console.log("prevIndex", prevIndex);
         console.log("nextIndex", nextIndex);
        
-        // if (reserva.fechaInicio !== '' && reserva.fechaTermino !== '') {
-
-        //     //Validando diferencia de horas max 5 horas y minimo 3
-        //     const date1 = dayjs(reserva.fechaInicio);
-        //     const date2 = dayjs(reserva.fechaTermino);
-        //     let hours = date2.diff(date1, 'hours');
-
-        //     if (hours >= 3 && hours <= 5) {
-        //         // fetch data juegos
-        //         const juegosResponse = await getJuegosReserva()
-            
-        //         if (juegosResponse.length > 0) {
-        //             //setJuegos(juegosResponse)
-        //             //setJuegosActive(true)
-        //         }else{
-        //             //setJuegosActive(false)
-        //         }
-                
-
-        //     }else{
-        //         swal("Recuerda", "El minimo son 3 horas y el maximo 5 horas!");
-        //         setJuegosActive(false)
-        //     }
-
-          
-        // }
-
 
     };
 
@@ -117,6 +92,9 @@ export default function Reserva() {
         >
 
             <main className="contenedorBody">
+
+                {isLoading ? <LoadingScreen /> : ''}
+
                 <h2 className="heading">Reserva tu hora</h2>
                 <div className={styles.contenido}>
                     <FormWizard
@@ -158,6 +136,7 @@ export default function Reserva() {
                                 setReserva={setReserva}
                                 setJuegosActive={setJuegosActive}
                                 setJuegos={setJuegos}
+                                setIsLoading={setIsLoading} 
                             />
 
                             {juegosActive ? <ReservaJuegos juegos={juegos} /> : ''}

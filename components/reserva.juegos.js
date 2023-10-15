@@ -11,7 +11,7 @@ export default function ReservaJuegos({juegos}) {
 
 
     return (
-        <div className={stylesJuegos.contenido}>
+        <div >
             <h3>Ahora selecciona los juegos que quieres en tu cumpleaños</h3>
             <ListadoJuegos>
                 {juegos}

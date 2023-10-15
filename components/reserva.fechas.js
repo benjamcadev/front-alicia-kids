@@ -12,7 +12,7 @@ import getJuegosReserva from '../utils/getJuegosReserva'
 
 
 
-export default function ReservaFechas({ user, reserva, setReserva, setJuegosActive, setJuegos }) {
+export default function ReservaFechas({ user, reserva, setReserva, setJuegosActive, setJuegos, setIsLoading }) {
     dayjs.extend(customParseFormat)
 
     const handleChangeDateStart = (newValue) => {
@@ -32,13 +32,16 @@ export default function ReservaFechas({ user, reserva, setReserva, setJuegosActi
             if (hours >= 3 && hours <= 5) {
                 
                 //fetch data juegos
+                setIsLoading(true)
                 const juegosResponse = await getJuegosReserva()
 
                 if (juegosResponse.length > 0) {
                     setJuegos(juegosResponse)
                     setJuegosActive(true)
+                    setIsLoading(false)
                 } else {
                     setJuegosActive(false)
+                    setIsLoading(false)
                 }
             } else {
                 swal("Recuerda", "El minimo son 3 horas y el maximo 5 horas!");
