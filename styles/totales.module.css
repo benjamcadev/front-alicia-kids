@@ -1,0 +1,42 @@
+.body {
+    position: fixed;
+    width: 95%;
+    z-index: 10;
+    padding: 0%;
+    height: 8%;
+    top: 90%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    
+}
+
+.contenedor {
+    background-color: var(--nacre);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 10%;
+    padding: 2%;
+    border-radius: 8px;
+    color: var(--white);
+}
+
+.text {
+    font-size: 1.5rem;
+    background-color: var(--nacre);
+    color: var(--white);
+}
+
+/* Pantallas moviles */
+@media (max-width: 760px) {
+.contenedor {
+    height: 30%;
+    width: 30%;
+}
+.text{
+    font-size: 1.3rem;
+}
+ }

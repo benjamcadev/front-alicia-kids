@@ -15,13 +15,14 @@ import styles from '../styles/reserva.module.css'
 import ReservaFechas from '../components/reserva.fechas'
 import ReservaJuegos from '../components/reserva.juegos'
 import LoadingScreen from '../components/loading-screen'
+import Totales from '../components/totales'
 
 
 
 export default function Reserva() {
 
-    const [user, setUser] = useState({ userEmail: "bmcortes@agroplastic.cl", userName: "Benjamin" })
-    const [reserva, setReserva] = useState({ fechaInicio: '', fechaTermino: '' })
+    const [user, setUser] = useState({ userEmail: "", userName: "" })
+    const [reserva, setReserva] = useState({ fechaInicio: '', fechaTermino: '', juegos: [], totales: [] })
     const [juegosActive, setJuegosActive] = useState(false)
     const [juegos, setJuegos] = useState('')
     const [isLoading, setIsLoading] = useState(false)
@@ -95,6 +96,8 @@ export default function Reserva() {
 
                 {isLoading ? <LoadingScreen /> : ''}
 
+                { reserva.totales.length > 0 ? <Totales totales={reserva.totales} /> : ''}
+
                 <h2 className="heading">Reserva tu hora</h2>
                 <div className={styles.contenido}>
                     <FormWizard
@@ -139,7 +142,11 @@ export default function Reserva() {
                                 setIsLoading={setIsLoading} 
                             />
 
-                            {juegosActive ? <ReservaJuegos juegos={juegos} /> : ''}
+                            {juegosActive ? <ReservaJuegos 
+                            juegos={juegos} 
+                            setReserva={setReserva}
+                            reserva={reserva}
+                             /> : ''}
 
                         </FormWizard.TabContent>
                         <FormWizard.TabContent title="Direccion y Contacto">

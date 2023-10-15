@@ -6,7 +6,10 @@
     padding: 25px;
     margin: 8px;
     background-color: whitesmoke;
-   
+  }
+
+  .cardClick {
+    background-color: aquamarine;
   }
   
   .card:hover {

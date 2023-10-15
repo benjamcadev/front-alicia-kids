@@ -35,7 +35,9 @@ export default function Juegos({ juegos }) {
                 <h2 className="heading">Juegos</h2>
 
                 <div className={styles.contenido}>
-                    <ListadoJuegos>
+                    <ListadoJuegos
+                    context={'juegos'}
+                    >
                         {juegos}
                     </ListadoJuegos>
                 </div>
