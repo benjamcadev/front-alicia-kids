@@ -3,7 +3,7 @@ import styles from '../styles/juego-card.module.css'
 import Image from 'next/image'
 
 
-export default function juegoCard({ children: juego , id , setReserva, reserva, context}) {
+export default function JuegoCard({ children: juego , id , setReserva, reserva, context}) {
 
     const [clickCard,setClickCard] = useState(false)
 
