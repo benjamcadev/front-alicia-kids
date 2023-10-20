@@ -27,7 +27,8 @@ export default function Reserva() {
     const [juegos, setJuegos] = useState('')
     const [isLoading, setIsLoading] = useState(false)
 
-  
+
+
 
 
 
@@ -39,13 +40,14 @@ export default function Reserva() {
     const tabChanged = async ({ prevIndex, nextIndex }) => {
         console.log("prevIndex", prevIndex);
         console.log("nextIndex", nextIndex);
-       
 
     };
 
 
     // Validacion de la tab
     const checkValidateTab = () => {
+
+        console.log("Validando tab ")
 
         if (user.userEmail === "" || user.userName === "") {
             return false;
@@ -62,12 +64,41 @@ export default function Reserva() {
         }
     };
 
-    // error messages
-    const errorMessages = (e) => {
-        // you can add alert or console.log or any thing you want
+    //Validando tab 2
+    const checkValidateTab2 = () => {
+        console.log('validando tab 2')
 
+        if (reserva.fechaInicio == '' || reserva.fechaTermino == '') {
+            return false;
+        } else {
+
+            if (reserva.totales !== 'undefined' && reserva.totales.length <= 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+    }
+
+    // error messages
+    const errorMessages = () => {
         swal("Ups!", "Algo falta por completar o esta mal escrito!", "warning");
         setUser({ userEmail: "", userName: "" })
+    };
+    const errorMessages2 = () => {
+        if (reserva.fechaInicio == '' || reserva.fechaTermino == '') {
+            swal("Ups!", "Algo falta por completar en las fechas!", "warning");
+            setReserva({ ...reserva, fechaInicio: '', fechaTermino: '' })
+        }else{
+            if (reserva.juegos.length <= 0 || reserva.totales.length <= 0) {
+                swal("Ups!", "Debes seleccionar algun juego!", "warning");
+                setReserva({ ...reserva, juegos: [], totales: [] })
+            }
+        }
+
+
+
     };
 
     const nextTemplate = (handleNext) => {
@@ -98,19 +129,22 @@ export default function Reserva() {
 
                 {isLoading ? <LoadingScreen /> : ''}
 
-                { reserva.totales.length > 0 ? <Totales totales={reserva.totales} /> : ''}
+                {reserva.totales.length > 0 ? <Totales totales={reserva.totales} /> : ''}
 
                 <h2 className="heading">Reserva tu hora</h2>
                 <div className={styles.contenido}>
                     <FormWizard
                         stepSize="sm"
                         onComplete={handleComplete}
-                        onTabChange={tabChanged}
+                        //onTabChange={tabChanged}
                         nextButtonTemplate={nextTemplate}
                         backButtonTemplate={backTemplate}
                         color="#c23535"
                     >
-                        <FormWizard.TabContent title="Ingresa Datos" >
+                        <FormWizard.TabContent
+                            title="Ingresa Datos"
+
+                        >
 
                             <h3>Hola ! 👋 Ingresa tus datos </h3>
 
@@ -134,6 +168,7 @@ export default function Reserva() {
                             title="Selecciona Fecha"
                             isValid={checkValidateTab()}
                             validationError={errorMessages}
+
                         >
                             <ReservaFechas
                                 user={user}
@@ -141,17 +176,21 @@ export default function Reserva() {
                                 setReserva={setReserva}
                                 setJuegosActive={setJuegosActive}
                                 setJuegos={setJuegos}
-                                setIsLoading={setIsLoading} 
+                                setIsLoading={setIsLoading}
                             />
 
-                            {juegosActive ? <ReservaJuegos 
-                            juegos={juegos} 
-                            setReserva={setReserva}
-                            reserva={reserva}
-                             /> : ''}
+                            {juegosActive ? <ReservaJuegos
+                                juegos={juegos}
+                                setReserva={setReserva}
+                                reserva={reserva}
+                            /> : ''}
 
                         </FormWizard.TabContent>
-                        <FormWizard.TabContent title="Direccion y Contacto">
+                        <FormWizard.TabContent
+                            title="Direccion y Contacto"
+                            isValid={checkValidateTab2()}
+                            validationError={errorMessages2}
+                        >
                             <h3>Last Tab</h3>
                             <p>Some content for the last tab</p>
                         </FormWizard.TabContent>

@@ -1,19 +1,38 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../styles/juego-card.module.css'
 import Image from 'next/image'
 
 
 export default function JuegoCard({ children: juego , id , setReserva, reserva, context}) {
 
-    const [clickCard,setClickCard] = useState(false)
+
+    
+    const verifyStateCard = () => {
+        const verifyJuegoAdd = reserva.juegos.find((juego) => juego == id )
+
+        if (verifyJuegoAdd) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    
+    const [clickCard,setClickCard] = useState(verifyStateCard())
+
+    useEffect(() => {
+        verifyActiveCard()
+      }, [])
 
     const formatter = new Intl.NumberFormat('es-CL', {
         style: 'currency',
         currency: 'CLP',
     });
 
+
    
     const handleClick = () => {
+        
         if (clickCard) {
             setClickCard(false)
             const index = reserva.juegos.indexOf(id)
@@ -24,16 +43,50 @@ export default function JuegoCard({ children: juego , id , setReserva, reserva, 
 
         }else{
             setClickCard(true)
-            setReserva({...reserva , juegos: [...reserva.juegos, id] , totales: [...reserva.totales, juego.precio_juego]})
+            //Buscar si ya esta agregado el juego
+            if (reserva.juegos.length <= 0) {
+                setReserva({...reserva , juegos: [...reserva.juegos, id] , totales: [...reserva.totales, juego.precio_juego]})
+            }else{
+                const verifyJuegoAdd = reserva.juegos.find((juego) => juego == id )
+
+                if (!verifyJuegoAdd) {
+                    setReserva({...reserva , juegos: [...reserva.juegos, id] , totales: [...reserva.totales, juego.precio_juego]})
+                }
+            }
+           
+
+           
+           
         }
        
       }
+
+     
+
+    const verifyActiveCard =  () => {
+
+        if (reserva.juegos.length <= 0) {
+            return styles.card 
+        } else {
+            return reserva.juegos.map((juego) => {
+                if (juego == id) {
+                    
+                    return  styles.card + ' ' + styles.cardClick
+                }else {
+                    
+                    return styles.card
+                }
+            }).join(' ')
+        }
+      
+        
+    }  
     const handleClickNothing = () => {}  
     
 
     return (
 
-        <div onClick={ context === 'reserva' ? handleClick : handleClickNothing  }   className={ clickCard ? styles.card + ' ' + styles.cardClick : styles.card}>
+        <div onClick={ context === 'reserva' ? handleClick : handleClickNothing  }   className={ clickCard ? styles.card + ' ' + styles.cardClick :verifyActiveCard()}>
 
             <Image src="/img/juego.jpg" width={220} height={200} alt="Juego" />
             <div className={styles.container}>
