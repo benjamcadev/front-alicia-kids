@@ -14,6 +14,7 @@ import styles from '../styles/reserva.module.css'
 //Componentes
 import ReservaFechas from '../components/reserva.fechas'
 import ReservaJuegos from '../components/reserva.juegos'
+import ReservaDireccion from '../components/reserva.direccion'
 import LoadingScreen from '../components/loading-screen'
 import Totales from '../components/totales'
 
@@ -26,10 +27,6 @@ export default function Reserva() {
     const [juegosActive, setJuegosActive] = useState(false)
     const [juegos, setJuegos] = useState('')
     const [isLoading, setIsLoading] = useState(false)
-
-
-
-
 
 
     const handleComplete = () => {
@@ -191,8 +188,8 @@ export default function Reserva() {
                             isValid={checkValidateTab2()}
                             validationError={errorMessages2}
                         >
-                            <h3>Last Tab</h3>
-                            <p>Some content for the last tab</p>
+                           <ReservaDireccion />
+                           
                         </FormWizard.TabContent>
                     </FormWizard>
                 </div>
