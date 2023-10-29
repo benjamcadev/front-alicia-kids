@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField';
+import getConfig from 'next/config'
 
 export default function ReservaDireccion() {
+    const { publicRuntimeConfig } = getConfig()
+    const { BING_MAP_APIKEY } = publicRuntimeConfig
 
     const [searchAddress, setSearchAddress] = useState([])
 
@@ -13,7 +16,7 @@ export default function ReservaDireccion() {
         if (e.target.value != '') {
             try {
                 const response = await fetch(
-                    `http://dev.virtualearth.net/REST/v1/Autosuggest?query=${direccionURL}&key=${process.env.NEXT_PUBLIC_BING_MAP_APIKEY}`
+                    `http://dev.virtualearth.net/REST/v1/Autosuggest?query=${direccionURL}&key=${BING_MAP_APIKEY}`
                 )
                 const data = await response.json()
                 const arrayAddress = data.resourceSets[0].resources[0].value
