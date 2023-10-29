@@ -70,7 +70,7 @@ export default function ReservaFechas({ user, reserva, setReserva, setJuegosActi
 
     return (
         <>
-            <h3>Hola {user.userName}, Ahora selecciona una fecha</h3>
+            <h3>Hola {user.userName} 👋, Ahora selecciona una fecha</h3>
             <p className={styles.warning}>Recuerda que puedes reservar 5 horas como maximo los juegos, si quieres mas horas debes reservar el dia completo</p>
             <LocalizationProvider
                 dateAdapter={AdapterDayjs}

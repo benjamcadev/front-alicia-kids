@@ -27,6 +27,7 @@ export default function Reserva() {
     const [juegosActive, setJuegosActive] = useState(false)
     const [juegos, setJuegos] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+    const [contacto, setContacto] = useState({direccion: '', telefono: ''})
 
 
     const handleComplete = () => {
@@ -188,7 +189,10 @@ export default function Reserva() {
                             isValid={checkValidateTab2()}
                             validationError={errorMessages2}
                         >
-                           <ReservaDireccion />
+                           <ReservaDireccion 
+                           contacto={contacto}
+                           setContacto={setContacto}
+                           />
                            
                         </FormWizard.TabContent>
                     </FormWizard>

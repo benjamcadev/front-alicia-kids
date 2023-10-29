@@ -3,7 +3,7 @@ import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField';
 import getConfig from 'next/config'
 
-export default function ReservaDireccion() {
+export default function ReservaDireccion({ contacto, setContacto }) {
     const { publicRuntimeConfig } = getConfig()
     const { BING_MAP_APIKEY } = publicRuntimeConfig
 
@@ -29,7 +29,7 @@ export default function ReservaDireccion() {
             } catch (error) {
                 console.error(`Error fetching search ${e.target.value}`);
             }
-        }else{
+        } else {
             setSearchAddress([])
         }
 
@@ -37,20 +37,30 @@ export default function ReservaDireccion() {
 
     }
 
-    const direcciones = []
-
     return (
         <>
+            <h3>Ahora ingresa la direccion del cumpleaños</h3>
             <Autocomplete
                 freeSolo
                 id="combo-box-address"
                 options={searchAddress}
                 renderInput={(params) =>
                     <TextField
+                        className='inputDireccion'
                         {...params}
-                        label="Ingrese Dirección"
+                       placeholder='Ingresa tu dirección'
                         onChange={(e) => handleChangePlace(e)}
                     />}
+            />
+
+            <h3>Y danos un numero para contactarte </h3>
+
+            <input
+                type="text"
+                value={contacto.telefono}
+                name="telefono"
+                placeholder="Ingresa tu telefono"
+                onChange={(e) => setContacto({ ...contacto, telefono: e.target.value })}
             />
         </>
 
