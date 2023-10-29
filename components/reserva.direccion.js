@@ -16,7 +16,7 @@ export default function ReservaDireccion() {
         if (e.target.value != '') {
             try {
                 const response = await fetch(
-                    `http://dev.virtualearth.net/REST/v1/Autosuggest?query=${direccionURL}&key=${BING_MAP_APIKEY}`
+                    `https://dev.virtualearth.net/REST/v1/Autosuggest?query=${direccionURL}&key=${BING_MAP_APIKEY}`
                 )
                 const data = await response.json()
                 const arrayAddress = data.resourceSets[0].resources[0].value
