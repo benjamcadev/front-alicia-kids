@@ -115,6 +115,14 @@ export default function Reserva() {
         )
     }
 
+    const finishTemplate = (handleFinish) => {
+        return (
+            <button className={styles.contenidoButtons + ' ' + styles.buttonRight} onClick={handleComplete}>
+        Listo !
+        </button>
+        )
+    }
+
 
 
     return (
@@ -137,6 +145,7 @@ export default function Reserva() {
                         //onTabChange={tabChanged}
                         nextButtonTemplate={nextTemplate}
                         backButtonTemplate={backTemplate}
+                        finishButtonTemplate={finishTemplate}
                         color="#c23535"
                     >
                         <FormWizard.TabContent

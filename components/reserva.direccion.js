@@ -2,6 +2,11 @@ import { useState } from 'react'
 import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField';
 import getConfig from 'next/config'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+
+//Styles
+import styles from '../styles/reserva.module.css'
+
 
 export default function ReservaDireccion({ contacto, setContacto }) {
     const { publicRuntimeConfig } = getConfig()
@@ -25,35 +30,65 @@ export default function ReservaDireccion({ contacto, setContacto }) {
                 })
 
                 setSearchAddress(searchedAddress)
+                setContacto({ ...contacto, direccion: e.target.value })
 
             } catch (error) {
                 console.error(`Error fetching search ${e.target.value}`);
             }
         } else {
             setSearchAddress([])
+            setContacto({ ...contacto, direccion: '' })
         }
-
-
-
     }
+
+    const theme = createTheme({
+        components: {
+            MuiInputBase: {
+                styleOverrides: {
+                    
+                
+                    root: {
+                        
+                        fontSize: '1.5rem',
+                        color: 'black',
+                        background: 'white',
+                        border: '1px solid #942a2a',
+                        borderRadius: '8px',
+                       fontFamily:  'Outfit'
+                    }
+                }
+            }
+        }
+    })
+
+
 
     return (
         <>
             <h3>Ahora ingresa la direccion del cumpleaños</h3>
+
+            <p className={styles.warning}>Recuerda, solo trabajamos en <b>La Serena y Coquimbo</b></p>
+
             <Autocomplete
+
                 freeSolo
                 id="combo-box-address"
                 options={searchAddress}
                 renderInput={(params) =>
-                    <TextField
-                        className='inputDireccion'
-                        {...params}
-                       placeholder='Ingresa tu dirección'
-                        onChange={(e) => handleChangePlace(e)}
-                    />}
+                    <ThemeProvider theme={theme} >
+                        <TextField
+                            
+                            {...params}
+                            placeholder='Ingresa tu dirección'
+                            onChange={(e) => handleChangePlace(e)}
+                        />
+                    </ThemeProvider>
+
+
+                }
             />
 
-            <h3>Y danos un numero para contactarte </h3>
+            <h3>Y un numero para contactarte </h3>
 
             <input
                 type="text"
