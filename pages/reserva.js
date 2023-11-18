@@ -6,6 +6,7 @@ import FormWizard from "react-form-wizard-component";
 import 'react-form-wizard-component/dist/style.css';
 // Alertas
 import swal from 'sweetalert'
+
 // Fechas
 import dayjs from 'dayjs'
 
@@ -27,13 +28,79 @@ export default function Reserva() {
     const [juegosActive, setJuegosActive] = useState(false)
     const [juegos, setJuegos] = useState('')
     const [isLoading, setIsLoading] = useState(false)
-    const [contacto, setContacto] = useState({direccion: '', telefono: ''})
+    const [contacto, setContacto] = useState({ direccion: '', telefono: '' })
 
 
-    const handleComplete = () => {
-        console.log("Form completed!");
-        // Handle form completion logic here
-    };
+    const handleComplete = async () => {
+
+        if (contacto.direccion === "" || contacto.telefono === "") {
+            console.log('falta completar direccion y telefono')
+            swal("Ups!", "Algo falta por completar o esta mal escrito!", "warning");
+        } else {
+
+            const request = {
+                cliente: {
+                    nombre_cliente: user.userName,
+                    correo_cliente: user.userEmail,
+                    telefono_cliente: contacto.telefono
+                }
+            }
+
+            //Recorrer con ciclo con map reservas
+            const arrayReservas = reserva.juegos.map((juego) => {
+                return {
+                    fecha_inicio_reserva: reserva.fechaInicio,
+                    fecha_termino_reserva: reserva.fechaTermino,
+                    total_reserva: reserva.totales.reduce((a, b) => a + b, 0),
+                    estado_reserva: true,
+                    direccion_reserva: contacto.direccion,
+                    fk_juego: juego
+                }
+            })
+
+            //Agregando reservas al request
+            const reservas = { ...request, reservas: arrayReservas }
+
+            setIsLoading(true)
+
+            const response = await fetch('https://api-alicia-kids.onrender.com/reservas/create', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(reservas)
+            });
+            const content = await response.json();
+
+            if (content.status === 'success') {
+
+                setIsLoading(false)
+
+                swal({
+                    title: "Listo !",
+                    text: `Reserva realizada con exito, tu numero de reserva es: ${content.reserva.numero_reserva}, hemos enviado un correo con los detalles de la reserva a ${content.reserva.cliente.correo}. Nos vemos pronto ! 👋🎉`,
+                    icon: "success",
+                    button: "Ok",
+                }).then((button) => {
+                    if (button) {
+                        window.location.href = '/';
+                    }
+                });
+            } else {
+
+                setIsLoading(false)
+                
+                swal({
+                    title: "Algo salio mal !",
+                    text: `Detalles: ${content.message}`,
+                    icon: "error",
+                    button: "Ok",
+                });
+
+            }
+        }
+    }
 
     const tabChanged = async ({ prevIndex, nextIndex }) => {
         console.log("prevIndex", prevIndex);
@@ -64,7 +131,6 @@ export default function Reserva() {
 
     //Validando tab 2
     const checkValidateTab2 = () => {
-        console.log('validando tab 2')
 
         if (reserva.fechaInicio == '' || reserva.fechaTermino == '') {
             return false;
@@ -88,7 +154,7 @@ export default function Reserva() {
         if (reserva.fechaInicio == '' || reserva.fechaTermino == '') {
             swal("Ups!", "Algo falta por completar en las fechas!", "warning");
             setReserva({ ...reserva, fechaInicio: '', fechaTermino: '' })
-        }else{
+        } else {
             if (reserva.juegos.length <= 0 || reserva.totales.length <= 0) {
                 swal("Ups!", "Debes seleccionar algun juego!", "warning");
                 setReserva({ ...reserva, juegos: [], totales: [] })
@@ -118,8 +184,8 @@ export default function Reserva() {
     const finishTemplate = (handleFinish) => {
         return (
             <button className={styles.contenidoButtons + ' ' + styles.buttonRight} onClick={handleComplete}>
-        Listo !
-        </button>
+                Listo !
+            </button>
         )
     }
 
@@ -198,11 +264,11 @@ export default function Reserva() {
                             isValid={checkValidateTab2()}
                             validationError={errorMessages2}
                         >
-                           <ReservaDireccion 
-                           contacto={contacto}
-                           setContacto={setContacto}
-                           />
-                           
+                            <ReservaDireccion
+                                contacto={contacto}
+                                setContacto={setContacto}
+                            />
+
                         </FormWizard.TabContent>
                     </FormWizard>
                 </div>

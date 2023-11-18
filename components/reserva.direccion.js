@@ -45,10 +45,7 @@ export default function ReservaDireccion({ contacto, setContacto }) {
         components: {
             MuiInputBase: {
                 styleOverrides: {
-                    
-                
                     root: {
-                        
                         fontSize: '1.5rem',
                         color: 'black',
                         background: 'white',
@@ -81,10 +78,11 @@ export default function ReservaDireccion({ contacto, setContacto }) {
                             {...params}
                             placeholder='Ingresa tu dirección'
                             onChange={(e) => handleChangePlace(e)}
+                            onBlur={(e) => handleChangePlace(e)}
+                            
+                           
                         />
                     </ThemeProvider>
-
-
                 }
             />
 
