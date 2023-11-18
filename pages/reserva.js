@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Layout from "../components/layout";
 
 // Form Wizard
@@ -9,6 +9,9 @@ import swal from 'sweetalert'
 
 // Fechas
 import dayjs from 'dayjs'
+
+// Confetti
+import ConfettiExplosion from 'react-confetti-explosion'
 
 import styles from '../styles/reserva.module.css'
 
@@ -21,6 +24,7 @@ import Totales from '../components/totales'
 
 
 
+
 export default function Reserva() {
 
     const [user, setUser] = useState({ userEmail: "", userName: "" })
@@ -29,6 +33,9 @@ export default function Reserva() {
     const [juegos, setJuegos] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [contacto, setContacto] = useState({ direccion: '', telefono: '' })
+    const [isExploding, setIsExploding] = useState(false);
+
+
 
 
     const handleComplete = async () => {
@@ -76,6 +83,7 @@ export default function Reserva() {
             if (content.status === 'success') {
 
                 setIsLoading(false)
+                setIsExploding(true)
 
                 swal({
                     title: "Listo !",
@@ -90,7 +98,7 @@ export default function Reserva() {
             } else {
 
                 setIsLoading(false)
-                
+
                 swal({
                     title: "Algo salio mal !",
                     text: `Detalles: ${content.message}`,
@@ -197,7 +205,10 @@ export default function Reserva() {
             description='Reserva, Alicia Kids, Reserva tu hora para celebrar tu cumpleaños o evento'
         >
 
+
             <main className="contenedorBody">
+
+                {isExploding && <ConfettiExplosion particleCount={250} force={0.8} duration={3000} width={1600}></ConfettiExplosion> }
 
                 {isLoading ? <LoadingScreen /> : ''}
 
