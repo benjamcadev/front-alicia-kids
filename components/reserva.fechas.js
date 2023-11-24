@@ -60,6 +60,8 @@ export default function ReservaFechas({ user, reserva, setReserva, setJuegosActi
                 } else {
                     setJuegosActive(false)
                     setIsLoading(false)
+                    swal("Lo Sentimos 😞", "No hay juegos disponibles para ese dia, por favor selecciona otro dia!");
+                    setReserva({ ...reserva, juegos: [], totales: [] })
                 }
             } else {
                 swal("Recuerda", "El minimo son 3 horas y el maximo 5 horas!");

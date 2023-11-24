@@ -197,6 +197,14 @@ export default function Reserva() {
         )
     }
 
+    const ConfettiProps = {
+        force: 0.8,
+        duration: 3000,
+        zIndex: 1000,
+        particleCount: 250,
+        width: 2600,
+        colors: ['#041E43', '#1471BF', '#5BB4DC', '#FC027B', '#66D805'],
+      };
 
 
     return (
@@ -204,11 +212,12 @@ export default function Reserva() {
             title={'Reserva'}
             description='Reserva, Alicia Kids, Reserva tu hora para celebrar tu cumpleaños o evento'
         >
+             
 
-
+             {isExploding && <ConfettiExplosion {...ConfettiProps}></ConfettiExplosion> }
             <main className="contenedorBody">
 
-                {isExploding && <ConfettiExplosion particleCount={250} force={0.8} duration={3000} width={1600}></ConfettiExplosion> }
+           
 
                 {isLoading ? <LoadingScreen /> : ''}
 
