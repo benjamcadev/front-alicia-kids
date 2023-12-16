@@ -1,0 +1,32 @@
+.contenido {
+    display: grid;
+    gap: 4rem;
+    font-size: 1.6rem;
+    padding-left: 10%;
+    padding-right: 10%;
+    justify-items: center;
+
+}
+
+.formulario {
+    width: 60%;
+}
+
+.buttonFormulario {
+    display: grid;
+    margin-top: 30px;
+}
+
+.logoHeader {
+    margin-top: 6px;
+    position: relative;
+    display: block;
+}
+
+/* Pantalla moviles */
+@media (max-width: 760px) {
+    .formulario {
+        width: 100%;
+    }
+
+}
