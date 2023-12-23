@@ -1,18 +1,18 @@
 import React from 'react'
 
-export default function dashboard() {
+export default function Dashboard() {
 
-  const getProfile = async (data) => {
-    const response = await fetch('http://localhost:3900/usuarios/login', {
+  const getProfile = async () => {
+    const response = await fetch('http://localhost:3900/usuarios/verify', {
       method: 'POST',
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data)
+      
     })
 
-    console.log(response)
+    console.log(await response.json())
   }
   return (
     <div>
