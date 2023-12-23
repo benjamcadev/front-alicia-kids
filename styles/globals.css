@@ -46,7 +46,15 @@ h3 {
     font-weight: 900;
     color: var(--nacre);
     margin: 5rem 0;
-    
+  }
+
+  
+  [class*="heading_login"] {
+    font-size: 4rem;
+    text-align: center;
+    font-weight: 900;
+    color: var(--nacre);
+    margin: 0;
   }
 
   [class*="title"] {

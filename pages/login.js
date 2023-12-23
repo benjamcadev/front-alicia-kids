@@ -7,8 +7,8 @@ import { useState } from 'react'
 export default function Login() {
 
     const [credenciales, setCredenciales] = useState({
-        email: '',
-        password: ''
+        correo_usuario: '',
+        pass_usuario: ''
     })
     const handleChange = (e) => {
         setCredenciales({
@@ -17,9 +17,19 @@ export default function Login() {
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault()
-        
+        const response = await fetch('http://localhost:3900/usuarios/login', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(credenciales)
+        })
+
+        console.log(response)
+
     }
 
     return (
@@ -34,11 +44,11 @@ export default function Login() {
 
                     </div>
 
-                    <h2 className="heading">Inicio de Sesión</h2>
+                    <h2 className="heading_login">Inicio de Sesión</h2>
 
                     <form onSubmit={handleSubmit} className={styles.formulario}>
-                        <input name='email' type='email' placeholder='Ingresa Correo' onChange={handleChange} />
-                        <input name='password' type='password' placeholder='Ingresa Clave' onChange={handleChange} />
+                        <input name='correo_usuario' type='email' placeholder='Ingresa Correo' onChange={handleChange} />
+                        <input name='pass_usuario' type='password' placeholder='Ingresa Clave' onChange={handleChange} />
                         <div className={styles.buttonFormulario}>
                             <button type="submit" className="buttonForm">Iniciar Sesión</button>
                         </div>
