@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function Dashboard() {
+
+  const [user, setUser] = useState({
+    nombre_user: '',
+    correo_user: ''
+  })
 
   const getProfile = async () => {
     const response = await fetch('http://localhost:3900/usuarios/verify', {
@@ -12,7 +17,14 @@ export default function Dashboard() {
       
     })
 
-    console.log(await response.json())
+    const dataUser = await response.json()
+
+    setUser({
+      nombre_user: dataUser.nombre_usuario,
+      correo_user: dataUser.correo_usuario
+  })
+
+   
   }
   return (
     <div>
