@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import logo from '../public/img/alicia-kids-logo.png'
 import { useRouter } from 'next/router'
+import getConfig from 'next/config'
 import { useState, useEffect } from 'react'
 
 // Alertas
@@ -16,6 +17,9 @@ export default function Login() {
         correo_usuario: '',
         pass_usuario: ''
     })
+
+    const { publicRuntimeConfig } = getConfig()
+    const { HOST } = publicRuntimeConfig
 
     const router = useRouter()
 
@@ -39,7 +43,8 @@ export default function Login() {
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-        const response = await fetch('http://localhost:3900/usuarios/login', {
+
+        const response = await fetch(`${HOST}/usuarios/login`, {
             method: 'POST',
             credentials: 'include',
             headers: {
