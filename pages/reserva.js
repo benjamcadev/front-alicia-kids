@@ -70,7 +70,7 @@ export default function Reserva() {
 
             setIsLoading(true)
 
-            const response = await fetch('https://api-alicia-kids.onrender.com/reservas/create', {
+            const response = await fetch('http://localhost:3900/reservas/create', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
