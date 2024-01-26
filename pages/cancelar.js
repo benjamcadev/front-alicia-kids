@@ -64,7 +64,7 @@ export default function Cancelar() {
             if (response.status == 200) {
                 swal({
                     title: '🥺',
-                    text: 'La reserva de ha cancelado con exito, esperamos volverte a ver pronto !',
+                    text: 'La reserva se ha cancelado con exito, esperamos volverte a ver pronto !',
                     icon: 'success',
                     timer: 3000,
                     buttons: false,
